@@ -1,4 +1,4 @@
-\documentclass[a4paper,UKenglish]{lipics-v2016}
+\documentclass[a4paper,UKenglish]{lipics-v2019}
 
 %%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -26,7 +26,7 @@
 
 %% This handles the translation of unicode to latex:
 %\usepackage{ucs}
-%\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{autofe}
 
 %% Some convenient shorthands
@@ -93,6 +93,23 @@
 \DeclareUnicodeCharacter{7468}{\ensuremath{^{A}}}
 \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
 \DeclareUnicodeCharacter{8346}{\ensuremath{_{p}}}
+%\DeclareUnicodeCharacter{22A5}{\ensuremath{\bottom}}
+
+\usepackage{newunicodechar}
+\newunicodechar{⊥}{\ensuremath{\bot}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{⊤}{\ensuremath{\top}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{⊕}{\ensuremath{\oplus}}
+\newunicodechar{⊗}{\ensuremath{\otimes}}
+\newunicodechar{⇓}{\ensuremath{\Downarrow}}
+\newunicodechar{₁}{\ensuremath{_{1}}}
+\newunicodechar{₂}{\ensuremath{_{2}}}
+\newunicodechar{⟶}{\ensuremath{\longrightarrow}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{ₚ}{\ensuremath{_{p}}}
+
 %% Add more as you need them (shouldn’t happen often). 
 
 %% Hyper ref for \url support
@@ -102,14 +119,17 @@
 
 
 \title{Programming Language Semantics}
-\author[0]{Gavin Mendel-Gleason} 
-\affil[0]{Trinity College Dublin\\
-  \texttt{mendelgg@scss.tcd.ie}}
+\author{Gavin Mendel-Gleason}{Data Chemist Ltd.} 
+       {mendelgg@scss.tcd.ie}{}{}
+
+\authorrunning{G. Mendel-Gleason}
 
 \Copyright{Gavin Mendel-Gleason}
 
-\subjclass{Program semantics}
-\keywords{operational semantics, type theory}
+\ccsdesc[100]{Program semantics}
+
+\keywords{denotational semantics, operational semantics, type theory}
+
 \begin{document}
 
 \maketitle 
@@ -297,14 +317,14 @@ Now that we've seen some basic uses of inductive types and functions
 which manipulate them, we are ready to do some heavier lifting in the
 service of programming language semantics.
 
-Operational semantics is an approach to semantics which looks at how,
-operationally, our programming terms {\em compute}. We'll get into the
+operational semantics is an approach to semantics which looks at how,
+operationally, our programming terms {\em compute}. we'll get into the
 nitty-gritty of evaluation, and learn how to state geeneral properties
 of terms by seeing how evaluation progresses.
 
 \begin{code}
 
-module OperationalSemantics where
+module operationalsemantics where
   open import Data.Nat
 
   data Exp : Set where

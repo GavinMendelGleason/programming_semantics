@@ -1,15 +1,18 @@
 
-Semantics of Programming Languages (CS3017)
-===========================================
+Semantics of Programming Languages
+==================================
 
-This directory contains Agda proof scripts which accompany the slides for the CS3017 course at Trinity present here: https://www.cs.tcd.ie/matthew.hennessy/splexternal2015/index.php.
+This directory contains Agda proofs and a literate agda programme
+designed as a basic course for the sematics of programming. Included
+are basical operational and denotational semantic approaches.
 
-The terms which prove termination at a value, double as runable evaluation functions!
+The terms which prove termination at a value, double as runable
+evaluation functions!
 
 Structure
 ---------
 
-* **Topic 0:** Some basic functional programming in a dependently typed language.
+* **Topic 0:** Some basic functional programming in a dependently typed language: **Preliminaries.pdf**
 
 * **Topic 1:** Operational semantics for simple arithmetic expressions.
 
@@ -21,11 +24,11 @@ A limited number of examples from the slides are present in the file: **Inductio
 
 Some of the consistency proofs are given in **Consistency.agda**. 
 
-There is a proof that (∀ E → Σ[ n ∈ ℕ ] E ⟶⋆ num n) in **SmallStepEval.agda**.  It makes use of transfinite induction rather than strong mathematical induction, but the approach is substantially similar. Induction is performed over the size of proofs.
+There is a proof that (∀ E → Σ[ n ∈ ℕ ] E ⟶⋆ num n) in **SmallStepEval.agda**.  It makes use of transfinite induction rather than strong mathematical induction. Induction is performed over the size of proofs.
 
 * **Topic 3:** A (first-order) functional programming language.
 
-There were no slides for this - PCF would be a possible choice for implementation.
+Not yet completed: PCF would be a possible choice for implementation.
 
 * **Topic 4:** The While programming language
 
@@ -35,14 +38,10 @@ The consistency proofs are in the file **WhileConsistency.agda**
 
 * **Topic 5:** Handling Exceptions
 
-Not completed
+Not yet completed
 
-* **Topic 6:** Provably correct implementations
+* **Topic 6:** Functions as data
 
-The subject of all files.
-
-* **Topic 7:** Functions as data
-
-Not completed
+Not yet completed
 
 
