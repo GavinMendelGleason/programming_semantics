@@ -120,7 +120,7 @@
 
 \title{Programming Language Semantics}
 \author{Gavin Mendel-Gleason}{Data Chemist Ltd.} 
-       {mendelgg@scss.tcd.ie}{}{}
+       {gavin@datachemist.com}{}{}
 
 \authorrunning{G. Mendel-Gleason}
 
@@ -151,10 +151,10 @@ subtleties with coinduction in a very limited number of proofs.
 \section{Introduction}
 
 Programming language semantics is the study of the meaning of
-programming languages. A programming language can be thought of as
-some syntactic means of describing what computation we would like to
-perform, coupled with a mechanism for performing the computation
-according to what this language describes.
+programs. A programming language can be thought of as some syntactic
+means of describing what computation we would like to perform, coupled
+with a mechanism for performing the computation according to what this
+language describes.
 
 We are going to take a quick tour of programming language semantics,
 making use of the Agda proof assistant as a method of both
@@ -192,17 +192,19 @@ dispel the devil.
 \section{Preliminaries}
 
 Instead of thinking of type theory through a very general mathematical
-lens, we’re going to take a more prosaic approach.  We are
+lens, we’re going to take a more prosaic approach.  We will treat it
+as merely a sophisticated functional programming language.
 
-We’ll start from the ground up, building some basic machinery
+We start from the ground up, building some basic machinery
 ourselves in order to understand how it works. Later we will use the
 analogous machinery from the Agda standard library.
 
-We will start our exploration by defining a number of {\em inductive
+Our exploration begins by defining a number of {\em inductive
 types}. Inductive types are the primary manner in which we describe
 our data structures for our semantics. They will also prove useful for
 defining properties and relations about the terms in the programming
-languages we will define.
+languages we will define. Inductive types are essentially abstract
+data types which are potentially recursive.
 
 Inductive types come equiped automatically with mechanisms to
 introduce elements of them, known as {\em constructors} and ways of
@@ -319,7 +321,7 @@ service of programming language semantics.
 
 operational semantics is an approach to semantics which looks at how,
 operationally, our programming terms {\em compute}. we'll get into the
-nitty-gritty of evaluation, and learn how to state geeneral properties
+nitty-gritty of evaluation, and learn how to state general properties
 of terms by seeing how evaluation progresses.
 
 \begin{code}
@@ -415,9 +417,13 @@ expression formed of a natural number, to that same natural number. In
 other words, when you evaluate a natural number, nothing happens.
 
 We use a number of dashes, \AC{----} to simulate the horizontal bar
-sometimes used in proofs, to separate our premises, from our conclusions.
-In our first case, we have no premises (aside from the
-uninteresting implicit \AB{n}). 
+sometimes used in proofs, to separate our premises, from our
+conclusions. In agda more than two dashes is simply a comment, so this
+is just a visual aid and has no impact on the terms we are
+expressing.
+
+In our first case, we have no premises (aside from the uninteresting
+implicit \AB{n}).
 
 The second constructor is \AIC{E⊕E}. We can read this as stating that,
 given we know the number to which two expressions \AB{E₁} and \AB{E₂}
@@ -758,12 +764,11 @@ have type: \AIC{num} \AN{n} \AD{⟶} \AB{E₁'}. Case analysis on this
 yields no ways in which to form this type as \AIC{num} \AN{n} can not
 be the left-hand side of any reduction.
 
-as they require two different
-constructors to be equivalent. Since inductive datatypes assume that
-constructors are disjoint by construction, Agda can safely eliminate
-cases in which two constructors actually being the same.
+In order to deal with the recursive case, where we have like
+constructors, we can make use of \AF{conf₂}. This function merely uses
+the fact that if two arguments are equal, then functions of those
+arguments are also equal. 
 
-This leaves us with only
 
 \begin{minipage}{\linewidth}
 \begin{code}
